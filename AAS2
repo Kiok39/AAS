@@ -1,0 +1,92 @@
+local player = game.Players.LocalPlayer
+local id = player.CharacterAppearanceId
+local chest 
+local place
+local OrionLib = loadstring(game:HttpGet(('https://raw.githubusercontent.com/shlexware/Orion/main/source')))()
+
+local Window = OrionLib:MakeWindow({Name = "AAS v2 Made by Skillou", HidePremium = false, SaveConfig = true, ConfigFolder = "OrionTest"})
+local Tab = Window:MakeTab({
+	Name = "Skillou",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+local Section = Tab:AddSection({
+	Name = "Farm"
+})
+
+Tab:AddToggle({
+	Name = "Kill aura",
+	Default = false,
+	Callback = function(value)
+	     getgenv().skil = value
+while getgenv().skil do
+task.wait()
+pcall(function()
+        wait()
+        for _,s in pairs(game:GetService("Workspace").Monsters[player.Stage.Value]:GetChildren()) do 
+            local args = s
+game:GetService("ReplicatedStorage").Events.DmgSunnsoEvent:FireServer(args)
+end
+end)
+end
+end
+})
+
+
+Tab:AddToggle({
+	Name = "Kill aura Infinit City",
+	Default = false,
+	Callback = function(value)
+getgenv().s = value
+while getgenv().s do
+    task.wait(.01)
+    pcall(function()
+for i, v in pairs(game:GetService("Workspace"):GetChildren()) do
+ if string.find(v.Name,"monster") then
+         if (v.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).Magnitude <= 100 then
+             for i = 1, 5 do
+                 local args = v
+game:GetService("ReplicatedStorage").Events.DmgSunnsoEvent:FireServer(args)
+end
+end
+end
+end
+end)
+end
+end
+})
+
+Tab:AddToggle({
+	Name = "Kill aura BOSS",
+	Default = false,
+	Callback = function(value)
+getgenv().g = value
+while getgenv().g do
+task.wait()
+pcall(function()
+for i,v in next, game:GetService("Workspace")["FightArea_" .. id]:GetChildren() do
+     if string.find(v.Name,"monster") then
+              for i = 1, 5 do
+                  local args = v
+game:GetService("ReplicatedStorage").Events.DmgSunnsoEvent:FireServer(args)
+end
+end
+end
+end)
+end
+end
+})
+
+local Tab1 = Window:MakeTab({
+	Name = "Crédit",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+Tab1:AddLabel("Made by Skillou Skillou")
+OrionLib:MakeNotification({
+	Name = "Bienvenue!",
+	Content = "Bienvenue dans le skillou gang!",
+	Image = "rbxassetid://4483345998",
+	Time = 10
+})
