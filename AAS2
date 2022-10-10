@@ -12,7 +12,7 @@ local Tab = Window:MakeTab({
 })
 
 local Section = Tab:AddSection({
-	Name = "Farm"
+	Name = "Mob"
 })
 
 Tab:AddToggle({
@@ -32,7 +32,52 @@ end)
 end
 end
 })
+local Section = Tab:AddSection({
+	Name = "Dungeon"
+})
+Tab:AddLabel("Les deux doivent être activés!")
 
+Tab:AddToggle({
+	Name = "Kill aura Dungeon",
+	Default = false,
+	Callback = function(value)
+	     getgenv().skil = value
+while getgenv().skil do
+task.wait()
+pcall(function()
+        wait()
+        for _,s in pairs(game:GetService("Workspace").CopybookFolder:GetChildren()) do
+            local args = s
+game:GetService("ReplicatedStorage").Events.DmgSunnsoEvent:FireServer(args)
+end
+end)
+end
+end
+})
+
+Tab:AddToggle({
+	Name = "Kill aura Dungeon 2",
+	Default = false,
+	Callback = function(value)
+	     getgenv().skil = value
+while getgenv().skil do
+task.wait()
+pcall(function()
+        wait()
+        for i,v in pairs(game:GetService("Workspace").Monsters:GetChildren()) do
+             if string.find(v.Name, "monster") then
+            local args = v
+game:GetService("ReplicatedStorage").Events.DmgSunnsoEvent:FireServer(args)
+end
+end
+end)
+end
+end
+})
+
+local Section = Tab:AddSection({
+	Name = "Infinit City"
+})
 
 Tab:AddToggle({
 	Name = "Kill aura Infinit City",
@@ -55,6 +100,10 @@ end
 end)
 end
 end
+})
+
+local Section = Tab:AddSection({
+	Name = "BOSS"
 })
 
 Tab:AddToggle({
@@ -83,7 +132,9 @@ local Tab1 = Window:MakeTab({
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
+
 Tab1:AddLabel("Made by Skillou Skillou")
+
 OrionLib:MakeNotification({
 	Name = "Bienvenue!",
 	Content = "Bienvenue dans le skillou gang!",
