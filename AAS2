@@ -128,12 +128,29 @@ end
 })
 
 local Tab1 = Window:MakeTab({
+	Name = "Misc",
+	Icon = "rbxassetid://4483345998",
+	PremiumOnly = false
+})
+
+
+Tab1:AddButton({
+	Name = "Anti AFK",
+	Callback = function()
+for i,v in pairs(getconnections(game:GetService("Players").LocalPlayer.Idled)) do
+v:Disable()
+end
+	end   
+
+})
+
+local Tab2 = Window:MakeTab({
 	Name = "Crédit",
 	Icon = "rbxassetid://4483345998",
 	PremiumOnly = false
 })
 
-Tab1:AddLabel("Made by Skillou Skillou")
+Tab2:AddLabel("Made by Skillou Skillou")
 
 OrionLib:MakeNotification({
 	Name = "Bienvenue!",
